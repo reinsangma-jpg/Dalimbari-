@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dalimbari Gaon — Field Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Satisfy&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --forest:#1a3d2b;
+  --moss:#2e6b4f;
+  --sage:#6b9e7e;
+  --mint:#a8d5b5;
+  --cream:#faf7f2;
+  --warm:#f5ede0;
+  --amber:#c8874a;
+  --gold:#d4a96a;
+  --text:#2c2c2c;
+  --soft:#6b7280;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--warm)}
+::-webkit-scrollbar-thumb{background:var(--sage);border-radius:3px}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:var(--forest);
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 80%,rgba(46,107,79,0.6) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 20%,rgba(107,158,126,0.3) 0%,transparent 60%),
+    radial-gradient(ellipse 100% 100% at 50% 50%,#0d2418 0%,#1a3d2b 100%);
+}
+
+/* Floating leaf shapes */
+.leaf{
+  position:absolute;
+  border-radius:50% 5% 50% 5%;
+  opacity:0.08;
+  animation:float linear infinite;
+}
+.leaf:nth-child(1){width:120px;height:60px;background:var(--mint);top:10%;left:5%;animation-duration:18s;animation-delay:-3s;transform:rotate(30deg)}
+.leaf:nth-child(2){width:80px;height:40px;background:var(--sage);top:60%;left:85%;animation-duration:22s;animation-delay:-8s;transform:rotate(-45deg)}
+.leaf:nth-child(3){width:160px;height:80px;background:var(--mint);top:30%;left:70%;animation-duration:25s;animation-delay:-15s;transform:rotate(60deg)}
+.leaf:nth-child(4){width:60px;height:30px;background:var(--gold);top:80%;left:15%;animation-duration:20s;animation-delay:-6s;transform:rotate(-20deg)}
+.leaf:nth-child(5){width:100px;height:50px;background:var(--sage);top:50%;left:40%;animation-duration:28s;animation-delay:-12s;transform:rotate(15deg)}
+
+@keyframes float{
+  0%{transform:translateY(0) rotate(30deg);opacity:0.08}
+  50%{opacity:0.15}
+  100%{transform:translateY(-100vh) rotate(80deg);opacity:0}
+}
+
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;padding:40px 20px;
+  animation:heroReveal 1.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes heroReveal{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.hero-tag{
+  display:inline-block;
+  font-family:'DM Sans',sans-serif;
+  font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--mint);border:1px solid rgba(168,213,181,0.4);
+  padding:6px 20px;border-radius:100px;margin-bottom:28px;
+  background:rgba(168,213,181,0.08);
+}
+
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,8vw,7rem);
+  font-weight:300;color:#fff;
+  line-height:1.05;letter-spacing:-0.02em;
+  margin-bottom:16px;
+}
+
+.hero h1 em{
+  font-style:italic;color:var(--mint);
+}
+
+.hero-sub{
+  font-size:1.05rem;color:rgba(255,255,255,0.6);
+  font-weight:300;letter-spacing:0.05em;margin-bottom:8px;
+}
+
+.hero-meta{
+  font-size:0.85rem;color:rgba(255,255,255,0.4);
+  letter-spacing:0.08em;
+}
+
+.hero-divider{
+  width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--mint),transparent);
+  margin:30px auto;
+}
+
+.scroll-hint{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,0.35);font-size:0.75rem;letter-spacing:0.15em;
+  text-transform:uppercase;animation:pulse 2s ease-in-out infinite;
+}
+.scroll-hint::after{
+  content:'';display:block;width:1px;height:40px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);
+  margin:8px auto 0;
+}
+
+@keyframes pulse{0%,100%{opacity:0.35}50%{opacity:0.7}}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:999;
+  background:rgba(250,247,242,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(107,158,126,0.15);
+  padding:0 20px;
+}
+
+.nav-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;
+}
+
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:600;color:var(--forest);
+  text-decoration:none;
+}
+
+.nav-links{
+  list-style:none;display:flex;gap:4px;flex-wrap:wrap;
+}
+
+.nav-links a{
+  text-decoration:none;color:var(--soft);
+  font-size:0.8rem;padding:6px 14px;border-radius:100px;
+  transition:all 0.25s;letter-spacing:0.03em;
+}
+
+.nav-links a:hover{background:var(--forest);color:#fff}
+
+/* ── WRAPPER ── */
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ── CERT BOX ── */
+.cert-section{
+  padding:60px 24px;
+}
+
+.cert-card{
+  background:#fff;border-radius:20px;
+  border:2px solid rgba(107,158,126,0.2);
+  padding:50px;margin-bottom:30px;
+  position:relative;overflow:hidden;
+  box-shadow:0 4px 40px rgba(26,61,43,0.06);
+}
+
+.cert-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--forest),var(--sage),var(--mint));
+}
+
+.cert-card::after{
+  content:'✦';position:absolute;top:20px;right:30px;
+  font-size:2rem;color:rgba(107,158,126,0.15);
+}
+
+.cert-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:600;color:var(--forest);
+  text-align:center;margin-bottom:24px;letter-spacing:0.05em;
+}
+
+.cert-card p{
+  color:var(--soft);line-height:1.8;font-size:0.95rem;margin-bottom:16px;
+}
+
+.sig-block{margin-top:40px;display:flex;gap:60px;flex-wrap:wrap}
+
+.sig-item{flex:1;min-width:180px}
+
+.sig-line{
+  height:1px;background:linear-gradient(90deg,var(--text),transparent);
+  margin-bottom:8px;
+}
+
+.sig-label{font-size:0.8rem;color:var(--soft);letter-spacing:0.05em}
+
+/* ── SECTION HEADERS ── */
+.section-header{
+  display:flex;align-items:flex-end;gap:16px;margin-bottom:36px;
+}
+
+.section-num{
+  font-family:'Satisfy',cursive;
+  font-size:5rem;color:rgba(107,158,126,0.18);
+  line-height:1;flex-shrink:0;
+}
+
+.section-title-wrap{}
+
+.section-tag{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--sage);margin-bottom:6px;
+}
+
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;font-weight:600;color:var(--forest);
+  line-height:1.1;
+}
+
+/* ── CONTENT SECTIONS ── */
+.content-section{
+  padding:60px 24px;
+  border-bottom:1px solid rgba(107,158,126,0.1);
+}
+
+.content-section:nth-child(even){background:rgba(168,213,181,0.05)}
+
+.prose p{
+  line-height:1.9;color:var(--text);
+  font-size:0.97rem;margin-bottom:18px;
+  font-weight:300;
+}
+
+.prose h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;color:var(--forest);
+  margin:32px 0 12px;font-weight:600;
+}
+
+.prose h4{
+  font-size:1rem;color:var(--moss);font-weight:500;
+  margin:20px 0 10px;letter-spacing:0.03em;
+}
+
+/* ── HIGHLIGHT TAG ── */
+.hl{
+  background:linear-gradient(120deg,rgba(200,135,74,0.15),rgba(200,135,74,0.25));
+  color:var(--amber);padding:1px 8px;border-radius:4px;
+  font-weight:500;
+}
+
+/* ── INFO BOX ── */
+.info-box{
+  background:linear-gradient(135deg,rgba(168,213,181,0.15),rgba(107,158,126,0.08));
+  border-left:3px solid var(--sage);
+  border-radius:0 12px 12px 0;
+  padding:20px 24px;margin:24px 0;
+}
+
+.info-box p,.info-box li{
+  font-size:0.92rem;color:var(--text);line-height:1.8;
+}
+
+/* ── QUOTE BOX ── */
+.quote-box{
+  background:var(--warm);border-radius:16px;
+  padding:28px 32px;margin:24px 0;
+  position:relative;
+}
+
+.quote-box::before{
+  content:'"';
+  font-family:'Cormorant Garamond',serif;
+  font-size:6rem;color:rgba(200,135,74,0.2);
+  position:absolute;top:-10px;left:16px;line-height:1;
+}
+
+.quote-box p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-style:italic;color:var(--text);
+  line-height:1.7;position:relative;z-index:1;
+}
+
+/* ── LISTS ── */
+.fancy-list{list-style:none;margin:16px 0 24px}
+
+.fancy-list li{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:10px 0;border-bottom:1px solid rgba(107,158,126,0.1);
+  font-size:0.93rem;color:var(--text);line-height:1.7;
+}
+
+.fancy-list li::before{
+  content:'◆';color:var(--sage);font-size:0.5rem;
+  margin-top:8px;flex-shrink:0;
+}
+
+.fancy-list.ordered{counter-reset:li}
+.fancy-list.ordered li{counter-increment:li}
+.fancy-list.ordered li::before{
+  content:counter(li);
+  width:24px;height:24px;border-radius:50%;
+  background:var(--forest);color:#fff;
+  font-size:0.7rem;font-weight:500;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;
+}
+
+/* ── PHOTO PLACEHOLDER ── */
+.photo-card{
+  background:linear-gradient(135deg,rgba(107,158,126,0.08),rgba(168,213,181,0.12));
+  border:2px dashed rgba(107,158,126,0.3);
+  border-radius:16px;padding:40px 20px;
+  text-align:center;margin:24px 0;
+  transition:all 0.3s;cursor:default;
+}
+
+.photo-card:hover{
+  background:linear-gradient(135deg,rgba(107,158,126,0.14),rgba(168,213,181,0.2));
+  border-color:var(--sage);
+}
+
+.photo-icon{font-size:2.5rem;margin-bottom:12px;display:block}
+
+.photo-label{
+  font-size:0.82rem;color:var(--sage);
+  letter-spacing:0.08em;text-transform:uppercase;font-weight:500;
+}
+
+/* ── TABLE ── */
+.table-wrap{overflow-x:auto;margin:24px 0;border-radius:16px;box-shadow:0 4px 24px rgba(26,61,43,0.08)}
+
+table{
+  width:100%;border-collapse:collapse;
+  background:#fff;
+}
+
+thead tr{background:var(--forest)}
+
+th{
+  color:#fff;font-weight:400;
+  font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;
+  padding:16px 20px;text-align:left;
+}
+
+td{
+  padding:14px 20px;font-size:0.9rem;
+  border-bottom:1px solid rgba(107,158,126,0.1);
+}
+
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(168,213,181,0.07)}
+
+/* ── STATS GRID ── */
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:16px;margin:28px 0;
+}
+
+.stat-card{
+  background:var(--forest);
+  border-radius:16px;padding:28px 20px;
+  text-align:center;position:relative;overflow:hidden;
+  transition:transform 0.3s;
+}
+
+.stat-card:hover{transform:translateY(-4px)}
+
+.stat-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at top right,rgba(168,213,181,0.2),transparent 70%);
+}
+
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3.5rem;font-weight:300;color:var(--mint);
+  line-height:1;position:relative;z-index:1;
+}
+
+.stat-label{
+  font-size:0.78rem;color:rgba(255,255,255,0.7);
+  margin-top:8px;letter-spacing:0.08em;text-transform:uppercase;
+  position:relative;z-index:1;
+}
+
+/* ── LOCALITY CHIPS ── */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
+
+.chip{
+  background:#fff;border:1.5px solid rgba(107,158,126,0.3);
+  border-radius:100px;padding:8px 20px;
+  font-size:0.85rem;color:var(--forest);font-weight:500;
+  transition:all 0.25s;cursor:default;
+}
+
+.chip:hover{background:var(--forest);color:#fff;border-color:var(--forest)}
+
+/* ── WORSHIP CARDS ── */
+.worship-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;margin:24px 0;
+}
+
+.worship-card{
+  background:#fff;border-radius:16px;
+  border:1px solid rgba(107,158,126,0.15);
+  padding:24px 20px;text-align:center;
+  box-shadow:0 4px 16px rgba(26,61,43,0.05);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+
+.worship-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(26,61,43,0.1)}
+
+.worship-icon{font-size:2.2rem;margin-bottom:12px;display:block}
+.worship-name{font-size:0.88rem;font-weight:500;color:var(--forest);line-height:1.4}
+.worship-type{font-size:0.75rem;color:var(--sage);margin-top:4px;letter-spacing:0.05em}
+
+/* ── CHALLENGE CARDS ── */
+.challenge-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:16px;margin:24px 0;
+}
+
+.challenge-card{
+  background:#fff;border-radius:16px;padding:24px;
+  border-left:4px solid;
+  box-shadow:0 4px 16px rgba(26,61,43,0.05);
+}
+
+.challenge-card.red{border-color:#e07070}
+.challenge-card.amber{border-color:var(--amber)}
+.challenge-card.blue{border-color:#7098c8}
+.challenge-card.green{border-color:var(--sage)}
+
+.challenge-card h4{font-size:0.95rem;font-weight:500;color:var(--text);margin-bottom:8px}
+.challenge-card p{font-size:0.85rem;color:var(--soft);line-height:1.6}
+
+/* ── SUGGESTION STEPS ── */
+.steps{margin:24px 0}
+
+.step{
+  display:flex;gap:20px;padding:20px 0;
+  border-bottom:1px solid rgba(107,158,126,0.1);
+  align-items:flex-start;
+}
+
+.step-num{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--forest),var(--moss));
+  color:#fff;font-size:0.85rem;font-weight:500;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+
+.step-text{
+  font-size:0.93rem;color:var(--text);line-height:1.7;
+  padding-top:8px;
+}
+
+/* ── FACILITIES TABLE ── */
+.facility-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;margin:24px 0;
+}
+
+.facility-item{
+  background:#fff;border-radius:14px;padding:18px 20px;
+  display:flex;gap:14px;align-items:center;
+  box-shadow:0 2px 12px rgba(26,61,43,0.05);
+  border:1px solid rgba(107,158,126,0.1);
+  transition:all 0.25s;
+}
+
+.facility-item:hover{box-shadow:0 6px 24px rgba(26,61,43,0.1);transform:translateY(-2px)}
+
+.fac-icon{font-size:1.8rem;flex-shrink:0}
+
+.fac-name{font-size:0.88rem;font-weight:500;color:var(--forest)}
+.fac-note{font-size:0.77rem;color:var(--soft);margin-top:2px}
+
+.fac-badge{
+  margin-left:auto;
+  padding:2px 10px;border-radius:100px;
+  font-size:0.7rem;font-weight:500;
+}
+
+.badge-ok{background:rgba(107,158,126,0.15);color:var(--moss)}
+.badge-warn{background:rgba(200,135,74,0.15);color:var(--amber)}
+.badge-poor{background:rgba(224,112,112,0.15);color:#c05050}
+
+/* ── REFLECTION ── */
+.reflection{
+  background:var(--forest);border-radius:24px;
+  padding:50px;color:#fff;position:relative;overflow:hidden;
+  margin:24px 0;
+}
+
+.reflection::before{
+  content:'';position:absolute;
+  top:-60px;right:-60px;
+  width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,213,181,0.15),transparent 70%);
+}
+
+.reflection p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-style:italic;
+  color:rgba(255,255,255,0.9);line-height:1.8;margin-bottom:16px;
+  position:relative;z-index:1;
+}
+
+.reflection p:last-child{margin-bottom:0}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--forest);color:rgba(255,255,255,0.8);
+  text-align:center;padding:50px 24px;
+}
+
+footer .f-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;color:#fff;margin-bottom:12px;
+}
+
+footer p{font-size:0.85rem;line-height:1.8;color:rgba(255,255,255,0.55)}
+
+footer .f-divider{
+  width:60px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(168,213,181,0.5),transparent);
+  margin:20px auto;
+}
+
+/* ── BACK TO TOP ── */
+.back-top{
+  position:fixed;bottom:30px;right:30px;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--forest);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;text-decoration:none;
+  box-shadow:0 4px 16px rgba(26,61,43,0.3);
+  transition:all 0.3s;opacity:0;pointer-events:none;
+  z-index:998;
+}
+
+.back-top.show{opacity:1;pointer-events:all}
+.back-top:hover{transform:translateY(-4px);background:var(--moss)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .cert-card{padding:30px 24px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .sig-block{flex-direction:column;gap:30px}
+  .hero h1{font-size:3rem}
+  .content-section{padding:40px 16px}
+  .wrap{padding:0 16px}
+  .section-num{font-size:3.5rem}
+  .section-title{font-size:1.8rem}
+  .reflection{padding:32px 24px}
+}
+
+/* ── ENTRY ANIMATIONS ── */
+.fade-in{
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="leaf"></div>
+  <div class="leaf"></div>
+  <div class="leaf"></div>
+  <div class="leaf"></div>
+  <div class="leaf"></div>
+
+  <div class="hero-content">
+    <span class="hero-tag">🌿 Rural Geography Field Study</span>
+    <h1>Field Report on<br><em>Dalimbari Gaon</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">West Karbi Anglong District, Assam</p>
+    <p class="hero-meta">Amri Development Block &nbsp;·&nbsp; Academic Field Visit</p>
+  </div>
+
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Dalimbari</a>
+    <ul class="nav-links">
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#geography">Geography</a></li>
+      <li><a href="#settlement">Settlement</a></li>
+      <li><a href="#culture">Culture</a></li>
+      <li><a href="#economy">Economy</a></li>
+      <li><a href="#facilities">Facilities</a></li>
+      <li><a href="#challenges">Challenges</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- CERTIFICATE & DECLARATION -->
+<div class="cert-section wrap">
+  <div class="cert-card fade-in">
+    <div class="cert-title">✦ Certificate ✦</div>
+    <p>
+      This is to certify that <strong>____________ (Name)</strong> of <strong>____________ (Class/Semester)</strong>
+      has successfully completed the field report titled <strong>"Field Report on Dalimbari Gaon, West Karbi Anglong, Assam"</strong>
+      under my guidance. This report is based on the student's field visit, observation, and collection of local information.
+    </p>
+    <div class="sig-block">
+      <div class="sig-item">
+        <div class="sig-line"></div>
+        <div class="sig-label">Teacher/Guide Signature</div>
+        <div class="sig-label">Name: ____________</div>
+        <div class="sig-label">Designation: ____________</div>
+        <div class="sig-label">Date: ____________</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cert-card fade-in">
+    <div class="cert-title">✦ Declaration ✦</div>
+    <p>
+      I, <strong>____________ (Name)</strong>, declare that this project titled <strong>"Field Report on Dalimbari Gaon,
+      West Karbi Anglong, Assam"</strong> is my original work based on my field visit, observations, and information
+      collected from local sources. This work has not been submitted earlier for any other examination.
+    </p>
+    <div class="sig-block">
+      <div class="sig-item">
+        <div class="sig-line"></div>
+        <div class="sig-label">Student Signature</div>
+        <div class="sig-label">Date: ____________</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACKNOWLEDGEMENT -->
+<div class="content-section" id="ack">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">✦</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Gratitude</div>
+        <div class="section-title">Acknowledgement</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>I would like to express my sincere gratitude to my teacher/guide for providing guidance and support in completing
+      this field report. I am also thankful to the residents of <span class="hl">Dalimbari Gaon</span> who graciously
+      shared information and helped me understand the village conditions, facilities, and daily life. This visit helped
+      me connect textbook knowledge with real rural situations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INTRODUCTION -->
+<div class="content-section" id="intro">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Overview</div>
+        <div class="section-title">Introduction</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>As part of my field study, I visited <span class="hl">Dalimbari Gaon</span>, located in the <strong>West Karbi Anglong
+      district of Assam</strong>, under the <strong>Amri Development Block</strong>. The village is known for its rural setting,
+      greenery, and a landscape shaped by hills, forest patches, streams/rivers, and low-lying areas.</p>
+      <p>Dalimbari is mainly inhabited by the <strong>Karbi community</strong> and has a strong community life. Along with the
+      Karbi majority, other communities and religions also live here, making the village socially diverse. The daily life of
+      villagers is closely linked with agriculture, local markets, small wage work, and nearby plantation-related activities.</p>
+    </div>
+    <div class="photo-card">
+      <span class="photo-icon">🏞️</span>
+      <div class="photo-label">Plate 1 — General landscape view of Dalimbari Gaon</div>
+    </div>
+  </div>
+</div>
+
+<!-- OBJECTIVES -->
+<div class="content-section">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Purpose</div>
+        <div class="section-title">Objectives of the Study</div>
+      </div>
+    </div>
+    <ul class="fancy-list ordered">
+      <li>To understand the <strong>physical and geographical features</strong> of Dalimbari Gaon.</li>
+      <li>To study the <strong>settlement pattern</strong> and different habitation/locality divisions.</li>
+      <li>To observe the status of <strong>water supply, education, health, roads, transport and infrastructure</strong>.</li>
+      <li>To identify the <strong>economic activities</strong> such as farming, wage labour, and tea garden-related employment.</li>
+      <li>To record the village <strong>problems and needs</strong> and give suitable suggestions.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div class="content-section">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Approach</div>
+        <div class="section-title">Methodology</div>
+      </div>
+    </div>
+    <ul class="fancy-list">
+      <li><strong>Direct observation:</strong> roads, market, schools, water points, public places.</li>
+      <li><strong>Transect walk:</strong> moving from the bazar/market area towards the playground area, then towards hillside (Phukrap side) and other habitations.</li>
+      <li><strong>Informal discussion with villagers:</strong> to confirm school names, facilities, local area names, water and transport situation.</li>
+      <li><strong>Listing method:</strong> preparing a list of schools, facilities, and worship places.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- GEOGRAPHY -->
+<div class="content-section" id="geography">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Physical Setting</div>
+        <div class="section-title">Location & Geography</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Dalimbari Gaon lies within <strong>West Karbi Anglong</strong>, a district characterized by hills and valleys.
+      The village is connected to nearby areas through rural roads, but connectivity becomes difficult during monsoon
+      due to weak and broken stretches.</p>
+      <p>A notable regional point is the <span class="hl">Basundari border area</span>, which marks the boundary
+      between West Karbi Anglong and Nagaon district.</p>
+    </div>
+    <div class="photo-card">
+      <span class="photo-icon">🗺️</span>
+      <div class="photo-label">Plate 2 — Hand-drawn location map: Assam → West Karbi Anglong → Dalimbari</div>
+    </div>
+
+    <div class="prose">
+      <h3>Relief and Terrain</h3>
+      <p>The village has a mixed terrain with distinct zones:</p>
+    </div>
+    <ul class="fancy-list">
+      <li><strong>Lower zones:</strong> market area, cultivation land, and active movement of people.</li>
+      <li><strong>Uphill/hillside zones:</strong> habitations extend towards upper areas (Phukrap side) with slopes and forest patches.</li>
+    </ul>
+
+    <div class="info-box">
+      <p><strong>Sub-tropical climate characteristics:</strong> Heavy monsoon rainfall makes roads muddy and broken; mild winters; warm summers with increased water demand.</p>
+    </div>
+
+    <div class="prose">
+      <h3>Drainage & Water Bodies</h3>
+      <p>Water bodies are among the most important natural features of Dalimbari. The <strong>Chinanadi</strong> stream supports daily needs and agriculture in nearby areas. The <strong>Naudubi River</strong> is another important natural resource for agriculture and water availability in surrounding zones.</p>
+    </div>
+    <div class="photo-card">
+      <span class="photo-icon">🌊</span>
+      <div class="photo-label">Plate 3 — Hilly terrain and vegetation | Plate 4 — Chinanadi stream | Plate 5 — Naudubi River</div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTLEMENT -->
+<div class="content-section" id="settlement">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Community Layout</div>
+        <div class="section-title">Settlement Pattern</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Dalimbari is not one single compact settlement — it spreads across several distinct localities and habitations, each with its own character.</p>
+    </div>
+
+    <div class="chips">
+      <span class="chip">🏪 Bazar / Market Area</span>
+      <span class="chip">🏘️ Chinani Engleng Gaon</span>
+      <span class="chip">🌿 Rongpi Gaon</span>
+      <span class="chip">🌾 Phancho Gaon</span>
+      <span class="chip">🌲 Langtababa</span>
+      <span class="chip">⛳ Dalimbari Garo Gaon</span>
+      <span class="chip">⛰️ Phukrap Garo Gaon</span>
+      <span class="chip">🆕 Markhang</span>
+      <span class="chip">🔲 Basundari (Border)</span>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Map idea:</strong> Market/Bazar → Playground (Dalimbari Garo Gaon) → uphill (Phukrap) → Markhang → Basundari border. Mark Chinanadi/Naudubi side and tea garden areas.</p>
+    </div>
+
+    <div class="prose">
+      <h3>Housing</h3>
+      <p>Traditional rural house types are common — bamboo/wood construction is visible, often with tin roofs. Houses are spaced with small yards and household plants. Settlement becomes more scattered towards upper slope areas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CULTURE -->
+<div class="content-section" id="culture">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Heritage & Faith</div>
+        <div class="section-title">Culture, Religion & Worship</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Dalimbari reflects <strong>Karbi cultural identity</strong> along with broader Assamese rural influence. Traditional social practices remain important and community participation is strong.</p>
+      <h3>Major Festivals</h3>
+    </div>
+    <ul class="fancy-list">
+      <li><strong>Rongker</strong> — Community worship festival</li>
+      <li><strong>Chomangkan</strong> — Traditional death ceremony/festival</li>
+    </ul>
+
+    <div class="prose">
+      <p>The village is <span class="hl">majority Hindu</span>, mainly among the Karbi community. <strong>Christian and Muslim</strong> families also reside here alongside Bengali community presence.</p>
+      <h3>Places of Worship</h3>
+    </div>
+
+    <div class="worship-grid">
+      <div class="worship-card">
+        <span class="worship-icon">⛪</span>
+        <div class="worship-name">Dalimbari UCA Church</div>
+        <div class="worship-type">Church</div>
+      </div>
+      <div class="worship-card">
+        <span class="worship-icon">⛪</span>
+        <div class="worship-name">Dalimbari Baptist Church</div>
+        <div class="worship-type">Church</div>
+      </div>
+      <div class="worship-card">
+        <span class="worship-icon">🛕</span>
+        <div class="worship-name">Kali Mandir</div>
+        <div class="worship-type">Mandir</div>
+      </div>
+      <div class="worship-card">
+        <span class="worship-icon">🛕</span>
+        <div class="worship-name">Jaiguru Mandir</div>
+        <div class="worship-type">Mandir</div>
+      </div>
+      <div class="worship-card">
+        <span class="worship-icon">🛕</span>
+        <div class="worship-name">Durga Mandir</div>
+        <div class="worship-type">Mandir</div>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <span class="photo-icon">🙏</span>
+      <div class="photo-label">Plate 15 — Churches | Plate 16 — Mandirs</div>
+    </div>
+  </div>
+</div>
+
+<!-- ECONOMY -->
+<div class="content-section" id="economy">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Livelihoods</div>
+        <div class="section-title">Occupation & Economy</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>The village economy is mainly based on primary activities and local services. Economic condition is generally <span class="hl">low to moderate</span>.</p>
+      <h3>Main Occupations</h3>
+    </div>
+    <ul class="fancy-list">
+      <li><strong>Agriculture</strong> — paddy, vegetables, local crops (main occupation)</li>
+      <li><strong>Daily wage labour</strong> — seasonal and regular</li>
+      <li><strong>Small shops and market-based work</strong> — bazar activities</li>
+      <li><strong>Animal husbandry</strong> — household-level keeping</li>
+    </ul>
+
+    <div class="prose">
+      <h3>Agriculture & Cropping</h3>
+      <p>Agriculture depends heavily on rainfall. <strong>Paddy cultivation</strong> in low-lying plots, <strong>vegetables and seasonal crops</strong> in small fields, and in some hillside zones, <strong>jhum/shifting cultivation</strong> is also practiced.</p>
+      <h3>Tea Gardens</h3>
+      <p>Dalimbari has <strong>two tea garden areas</strong> providing important local wage opportunities:</p>
+    </div>
+    <ul class="fancy-list ordered">
+      <li>Tea garden <strong>near the Chinanadi river side</strong></li>
+      <li>Tea garden <strong>near Dalimbari Bill (Beel)</strong></li>
+    </ul>
+    <div class="photo-card">
+      <span class="photo-icon">🍃</span>
+      <div class="photo-label">Plate 6 — Tea garden (Chinanadi side) | Plate 7 — Tea garden (Dalimbari Beel side)</div>
+    </div>
+
+    <div class="prose">
+      <h3>Market & Trade</h3>
+      <p>Dalimbari has <span class="hl">one daily market</span> playing a central role in village life. For larger purchases and specialized goods, people depend on nearby towns like Diphu.</p>
+    </div>
+    <div class="photo-card">
+      <span class="photo-icon">🛒</span>
+      <div class="photo-label">Plate 8 — Daily market scene in Dalimbari</div>
+    </div>
+  </div>
+</div>
+
+<!-- FACILITIES -->
+<div class="content-section" id="facilities">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Infrastructure</div>
+        <div class="section-title">Village Facilities</div>
+      </div>
+    </div>
+
+    <div class="facility-grid">
+      <div class="facility-item">
+        <span class="fac-icon">🏫</span>
+        <div><div class="fac-name">Schools</div><div class="fac-note">8 schools (LP to High)</div></div>
+        <span class="fac-badge badge-ok">8</span>
+      </div>
+      <div class="facility-item">
+        <span class="fac-icon">🏥</span>
+        <div><div class="fac-name">Health Sub-Centre</div><div class="fac-note">Primary health care</div></div>
+        <span class="fac-badge badge-ok">✓</span>
+      </div>
+      <div class="facility-item">
+        <span class="fac-icon">💧</span>
+        <div><div class="fac-name">Water Supply</div><div class="fac-note">Needs maintenance</div></div>
+        <span class="fac-badge badge-warn">2</span>
+      </div>
+      <div class="facility-item">
+        <span class="fac-icon">🛒</span>
+        <div><div class="fac-name">Daily Market</div><div class="fac-note">Central trading zone</div></div>
+        <span class="fac-badge badge-ok">✓</span>
+      </div>
+      <div class="facility-item">
+        <span class="fac-icon">⛳</span>
+        <div><div class="fac-name">Playground</div><div class="fac-note">Community youth space</div></div>
+        <span class="fac-badge badge-ok">✓</span>
+      </div>
+      <div class="facility-item">
+        <span class="fac-icon">🚌</span>
+        <div><div class="fac-name">Public Transport</div><div class="fac-note">Bus & auto-rickshaw</div></div>
+        <span class="fac-badge badge-ok">✓</span>
+      </div>
+      <div class="facility-item">
+        <span class="fac-icon">🍃</span>
+        <div><div class="fac-name">Tea Gardens</div><div class="fac-note">Local wage source</div></div>
+        <span class="fac-badge badge-ok">2</span>
+      </div>
+      <div class="facility-item">
+        <span class="fac-icon">🛣️</span>
+        <div><div class="fac-name">Roads</div><div class="fac-note">Weak/broken stretches</div></div>
+        <span class="fac-badge badge-poor">Poor</span>
+      </div>
+      <div class="facility-item">
+        <span class="fac-icon">🙏</span>
+        <div><div class="fac-name">Places of Worship</div><div class="fac-note">2 churches, 3 mandirs</div></div>
+        <span class="fac-badge badge-ok">5</span>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="prose"><h3>Education (8 Schools)</h3></div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">8</div><div class="stat-label">Total Schools</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">LP Schools</div></div>
+      <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">High/Secondary</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Other Schools</div></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>School Name</th><th>Level</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Adarsha Vidyalaya</td><td>Secondary</td><td>Major school in the area</td></tr>
+          <tr><td>2</td><td>Songomot Chinani LP School</td><td>LP</td><td>Primary level</td></tr>
+          <tr><td>3</td><td>Chinanadi LP School</td><td>LP</td><td>Near Chinanadi side</td></tr>
+          <tr><td>4</td><td>Chinani Dharmeshwer Engleng Memorial M.E. School</td><td>ME</td><td>Middle education</td></tr>
+          <tr><td>5</td><td>Chinani High School</td><td>High</td><td>Higher classes</td></tr>
+          <tr><td>6</td><td>Jatiyo Vidyalay</td><td>School</td><td>Local/private type</td></tr>
+          <tr><td>7</td><td>Dalimbari Prathmik Vidyalay</td><td>Primary</td><td>Primary schooling</td></tr>
+          <tr><td>8</td><td>Vivekananda School</td><td>School</td><td>Private school option</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="photo-card">
+      <span class="photo-icon">📚</span>
+      <div class="photo-label">Plate 9–10 — Water supply facilities | Plate 11 — School building | Plate 12–13 — Roads & transport | Plate 14 — Health Sub-Centre</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGES -->
+<div class="content-section" id="challenges">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Issues Identified</div>
+        <div class="section-title">Problems & Challenges</div>
+      </div>
+    </div>
+
+    <div class="challenge-grid">
+      <div class="challenge-card red">
+        <h4>🛣️ Poor Road Condition</h4>
+        <p>Weak and broken stretches throughout the village. Situation worsens during monsoon, affecting school, market, and emergency travel.</p>
+      </div>
+      <div class="challenge-card amber">
+        <h4>🏥 Limited Healthcare</h4>
+        <p>Health Care Sub-Centre exists but serious cases must travel far. Poor roads delay emergency referrals.</p>
+      </div>
+      <div class="challenge-card blue">
+        <h4>💧 Seasonal Water Issues</h4>
+        <p>Two supply facilities exist but dry-season shortage and maintenance gaps remain concerns.</p>
+      </div>
+      <div class="challenge-card green">
+        <h4>📱 Weak Connectivity</h4>
+        <p>Mobile network weak near hillside zones. Limited internet affects students and online service access.</p>
+      </div>
+      <div class="challenge-card amber">
+        <h4>💼 Limited Employment</h4>
+        <p>Dependence on farming, tea garden, and wage labour. Fewer stable income options in off-season.</p>
+      </div>
+      <div class="challenge-card blue">
+        <h4>📖 Education Gaps</h4>
+        <p>Schools lack digital facilities and libraries. Monsoon disrupts student attendance due to road conditions.</p>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <p>Even with transport availability, the road condition is poor, weak, and broken in several parts. During monsoon, roads become worse — affecting school travel, market supply, and hospital referral during emergencies.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SUGGESTIONS -->
+<div class="content-section">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Recommendations</div>
+        <div class="section-title">Suggestions</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Immediate improvement of roads with stronger materials and proper side-drainage systems.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Regular maintenance of both water supply facilities; awareness campaigns about safe water practices.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Strengthen the Health Care Sub-Centre — medicine availability, regular staff presence, and basic equipment.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Upgrade school facilities: computers, library materials, playground and sports support infrastructure.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Promote skill training and local employment programs especially for youth to reduce seasonal unemployment.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Improve communication networks and internet access for education and digital services.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text">Protect slope areas from erosion through plantation drives and proper drainage management.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<div class="content-section">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">What I Learned</div>
+        <div class="section-title">Personal Reflection</div>
+      </div>
+    </div>
+    <div class="reflection">
+      <p>This field visit helped me understand the real situation of a rural village beyond textbooks. Dalimbari is rich in nature and culture, and people work hard with strong unity.</p>
+      <p>I learned that development must be balanced — roads, education, water, health, and employment all need to improve together for real progress. No single change is enough; it takes a whole-village approach.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="content-section" id="conclusion">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">Final Summary</div>
+        <div class="section-title">Conclusion</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Dalimbari Gaon in West Karbi Anglong is a developing rural village with strong Karbi cultural roots, diverse communities, and important natural surroundings. The village has key facilities — a <strong>daily market, playground, two water supply facilities, a health care sub-centre, public transport, eight schools, two tea garden areas, and five places of worship</strong>.</p>
+      <p>However, poor road conditions and limited healthcare capacity remain the most pressing challenges. With proper planning, road improvement, facility maintenance, and support for education and employment, <span class="hl">Dalimbari can develop further while preserving its traditions and environment.</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- BIBLIOGRAPHY -->
+<div class="content-section">
+  <div class="wrap fade-in">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <div class="section-title-wrap">
+        <div class="section-tag">References</div>
+        <div class="section-title">Bibliography</div>
+      </div>
+    </div>
+    <ul class="fancy-list">
+      <li>Information collected through field visit observation (Date: ___/___/____)</li>
+      <li>Informal discussions with local residents and market people of Dalimbari Gaon</li>
+      <li>Basic regional understanding of West Karbi Anglong geography (textbook/notes)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Dalimbari Gaon</div>
+  <div class="f-divider"></div>
+  <p>West Karbi Anglong District, Assam &nbsp;·&nbsp; Amri Development Block</p>
+  <p style="margin-top:8px">Field Report prepared as part of academic Geography study</p>
+  <p style="margin-top:16px;font-size:0.75rem;opacity:0.4">© 2025 · For educational purposes only</p>
+</footer>
+
+<!-- BACK TO TOP -->
+<a href="#" class="back-top" id="backTop" title="Back to top">↑</a>
+
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Back to top
+const btn = document.getElementById('backTop');
+window.addEventListener('scroll',() => {
+  btn.classList.toggle('show', window.scrollY > 400);
+});
+
+// Stagger facility items
+document.querySelectorAll('.facility-item').forEach((el,i) => {
+  el.style.animationDelay = `${i * 0.05}s`;
+});
+
+// Stat cards hover glow
+document.querySelectorAll('.stat-card').forEach(card => {
+  card.addEventListener('mouseenter', function(){
+    this.style.boxShadow = '0 12px 40px rgba(26,61,43,0.25)';
+  });
+  card.addEventListener('mouseleave', function(){
+    this.style.boxShadow = '';
+  });
+});
+</script>
+</body>
+</html>
